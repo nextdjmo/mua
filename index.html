@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hàng bền thật - Sổ tay chọn thương hiệu đáng tin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF2F0;--surface:#FFF;--ink:#16211D;--muted:#5A6862;--line:#D5DDD9;--accent:#0E6B5A;--accent2:#2BA58C;--on:#fff;--warn:#8A4B12;--t0:#2F6199;--t1:#8A6A12;--t2:#7B2F55;
+--font:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--r:20px;
+--shadow:0 1px 2px rgba(0,0,0,.04),0 10px 26px -14px rgba(14,107,90,.28);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1614;--surface:#17211E;--ink:#E6ECE9;--muted:#9AA8A2;--line:#2B3833;--accent:#4FC2A8;--accent2:#7ADBC4;--on:#0B1512;--warn:#E0A56A;--t0:#7DAEE3;--t1:#D9B54F;--t2:#D98AB0}}
+:root[data-theme="dark"]{--bg:#0F1614;--surface:#17211E;--ink:#E6ECE9;--muted:#9AA8A2;--line:#2B3833;--accent:#4FC2A8;--accent2:#7ADBC4;--on:#0B1512;--warn:#E0A56A;--t0:#7DAEE3;--t1:#D9B54F;--t2:#D98AB0}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 110px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:16px/1.6 var(--font);-webkit-text-size-adjust:100%;background:radial-gradient(900px 380px at 85% -90px,color-mix(in srgb,var(--accent) 18%,transparent),transparent 70%),var(--bg)}
+button,input{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:960px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px)) 0 max(16px,env(safe-area-inset-right,0px))}
+.hero{padding:44px 0 26px}
+.hero h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:0 0 14px;max-width:18ch;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);max-width:56ch;margin:0 0 22px}
+.checks{margin:0;padding:0;list-style:none;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);max-width:640px;overflow:hidden}
+.checks li{padding:12px 18px;border-bottom:1px solid var(--line)}.checks li:last-child{border:0}
+.note{margin:14px 0 0;max-width:640px;padding:12px 16px;border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow);font-size:.93rem}
+.search{display:block;width:100%;min-height:48px;padding:10px 20px;border:0;border-radius:999px;background:var(--surface);box-shadow:var(--shadow)}
+.row{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none;align-items:center}
+.row::-webkit-scrollbar{display:none}
+.lbl{flex:0 0 auto;font-size:.85rem;color:var(--muted)}
+.chip{border:0;background:color-mix(in srgb,var(--ink) 7%,transparent);border-radius:999px;padding:8px 16px;min-height:44px;font-size:.93rem;white-space:nowrap;flex:0 0 auto;touch-action:manipulation;transition:background .15s}
+.chip:hover{background:color-mix(in srgb,var(--accent) 16%,transparent)}
+.chip[aria-pressed="true"]{background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--on);font-weight:600;box-shadow:0 4px 12px -4px var(--accent)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin-top:8px;padding:6px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.grp{flex:0 0 auto;padding:0 2px 0 10px;font-weight:600;font-size:.85rem;color:var(--accent);border-left:2px solid var(--accent)}.grp:first-child{border:0;padding-left:0}
+.sortnote{margin:6px 0 0;font-size:.85rem;color:var(--muted)}
+main{padding:18px 0 48px;scroll-margin-top:72px}
+h2{font-size:1.65rem;margin:0 0 10px;font-weight:800;letter-spacing:-.01em}
+.tip{background:var(--surface);border-left:4px solid var(--accent);border-radius:0 var(--r) var(--r) 0;box-shadow:var(--shadow);padding:14px 18px;margin:0 0 20px}
+.tip p{margin:4px 0 0;color:var(--muted)}
+.brand{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:8px 26px;padding:22px;margin-bottom:14px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);transition:transform .2s}
+@media (hover:hover){.brand:hover{transform:translateY(-2px)}}
+h3{margin:0;font-size:1.3rem;font-weight:800}
+.tier{display:inline-block;margin-top:6px;padding:2px 12px;border-radius:999px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,currentColor 14%,transparent)}
+.cool{color:var(--accent)}.t0{color:var(--t0)}.t1{color:var(--t1)}.t2{color:var(--t2)}
+.from{font-size:.82rem;color:var(--muted);margin-top:4px}
+.save{margin-top:10px;border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 16px;min-height:44px;font-size:.9rem;color:var(--muted)}
+.save[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);font-weight:600;background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.body p{margin:0 0 8px}.k{font-weight:600}.warn{color:var(--warn)}
+.shop{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--on);font-weight:600;text-decoration:none;font-size:.92rem}
+.sc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 16px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:.82rem}
+.sc span{display:block;color:var(--muted);margin-bottom:3px}.sc .on-sort span{color:var(--ink);font-weight:600}
+.dots i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;background:color-mix(in srgb,var(--ink) 15%,transparent)}.dots i.on{background:var(--accent)}
+.pager{display:flex;gap:10px;justify-content:space-between;margin-top:8px}.pager .chip{flex:1;min-height:52px;font-weight:600;background:var(--surface);box-shadow:var(--shadow)}.pager .chip[disabled]{opacity:.35}
+.empty{padding:40px 0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:.88rem}footer p{margin:0 0 8px;max-width:70ch}
+@media (min-width:700px){#cats{flex-wrap:wrap;overflow:visible;row-gap:6px;padding-bottom:6px}.bar{position:static;background:none;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media (max-width:640px){.hero{padding:24px 0 16px}.brand{grid-template-columns:1fr;padding:18px;border-radius:16px}h2{font-size:1.4rem}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* ===== refined: small buttons + motion ===== */
+body{font-size:15px}
+.chip{min-height:36px;padding:6px 14px;font-size:.85rem;transition:background .2s,transform .15s,box-shadow .2s}
+.chip:active{transform:scale(.96)}
+.chip[aria-pressed="true"]{box-shadow:0 3px 10px -4px var(--accent)}
+.pager .chip{min-height:44px;font-size:.88rem;box-shadow:none;border:1px solid var(--line)}
+.pager .chip:not([disabled]):hover{border-color:var(--accent);color:var(--accent);background:var(--surface)}
+.search{min-height:44px;box-shadow:none;border:1px solid var(--line);transition:border-color .2s,box-shadow .2s}
+.search:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent)}
+.hero h1{background-size:200% 100%;animation:shine 9s linear infinite}
+.checks,.note,.tip{box-shadow:none;border:1px solid var(--line)}
+.tip{border-left:3px solid var(--accent)}
+.brand{position:relative;padding:18px 20px;border:1px solid var(--line);border-radius:16px;box-shadow:none;overflow:hidden;animation:rise .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*70ms);transition:border-color .25s,box-shadow .25s,transform .25s}
+.brand::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--accent),var(--accent2));transform:scaleY(0);transform-origin:top;transition:transform .3s}
+@media (hover:hover){.brand:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 14px 30px -18px var(--accent)}.brand:hover::before{transform:scaleY(1)}}
+h3{font-size:1.15rem}
+.tier{font-size:.72rem;padding:2px 10px;margin-top:5px}
+.save{min-height:30px;padding:3px 12px;font-size:.78rem;margin-top:8px;transition:all .2s}
+.save:hover{border-color:var(--accent);color:var(--accent)}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.lk{display:inline-flex;align-items:center;gap:5px;min-height:30px;padding:0 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);color:var(--accent);font-size:.78rem;font-weight:600;text-decoration:none;transition:background .2s,color .2s}
+.lk b{display:inline-block;font-weight:600;transition:transform .2s}
+.lk:hover{background:var(--accent);color:var(--on)}.lk:hover b{transform:translate(2px,-2px)}
+.dots i{width:8px;height:8px}
+.dots i.on{animation:pop .45s cubic-bezier(.2,.9,.3,1.4) both;animation-delay:calc(var(--i,0)*70ms + 250ms)}
+#prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:20;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{from{transform:scale(.2);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes shine{to{background-position:200% 0}}
+@media (prefers-reduced-motion:reduce){.brand,.dots i.on,.hero h1{animation:none!important}}
+
+/* ===== landing style, green ===== */
+:root{--bg:#F3F8F4;--surface:#FFF;--ink:#0F1F15;--muted:#56665C;--line:#DCE6DE;--accent:#15803D;--accent2:#22C55E;--on:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B130E;--surface:#111C15;--ink:#E8F1EA;--muted:#9BB0A1;--line:#223328;--accent:#4ADE80;--accent2:#86EFAC;--on:#052E16}}
+:root[data-theme="dark"]{--bg:#0B130E;--surface:#111C15;--ink:#E8F1EA;--muted:#9BB0A1;--line:#223328;--accent:#4ADE80;--accent2:#86EFAC;--on:#052E16}
+body{background:radial-gradient(700px 380px at 50% -120px,color-mix(in srgb,var(--accent2) 26%,transparent),transparent 70%),var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:760px;margin:10px auto 0;padding:6px 8px 6px 16px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 80%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);width:calc(100% - 32px)}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink);text-decoration:none;font-size:.92rem}
+.logo i{width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,var(--accent),var(--accent2));transform:rotate(45deg)}
+.tl{display:flex;align-items:center;gap:4px}
+.tl a{color:var(--muted);text-decoration:none;font-size:.82rem;padding:6px 12px;border-radius:999px;transition:background .2s,color .2s}
+.tl a:hover{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent)}
+.tl .chip{min-height:32px;width:32px;padding:0;display:grid;place-items:center}
+@media (max-width:520px){.tl a{display:none}}
+.hero{text-align:center;padding:52px 0 26px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.78rem;color:var(--muted);margin-bottom:18px}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+.hero h1{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--ink);animation:none;font-size:clamp(2.2rem,6.5vw,4rem);letter-spacing:-.03em;line-height:1.05;margin:0 auto 16px;max-width:15ch}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--accent),var(--accent2),var(--accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+.lead{margin:0 auto 22px;font-size:1rem}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;height:40px;padding:0 20px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--on);font-weight:600;font-size:.88rem;text-decoration:none;box-shadow:0 8px 20px -10px var(--accent);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -10px var(--accent)}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.marq{overflow:hidden;margin:6px 0 26px;-webkit-mask:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);mask:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
+#marqT{display:flex;gap:34px;width:max-content;animation:marq 40s linear infinite;color:var(--muted);font-weight:600;font-size:.85rem;white-space:nowrap}
+.marq:hover #marqT{animation-play-state:paused}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.steps div{padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:22px;transition:transform .25s,border-color .25s}
+.steps div:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 50%,var(--line))}
+.steps b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:9px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);font-size:.75rem}
+.steps h4{margin:10px 0 2px;font-size:.98rem}.steps p{margin:0;color:var(--muted);font-size:.86rem}
+.note{max-width:none;text-align:center;border-radius:999px;font-size:.84rem;padding:8px 16px}
+.brand,.tip{border-radius:22px}
+.tip{border-left:1px solid var(--line);position:relative}
+.tip::before{content:"";position:absolute;left:18px;top:0;width:36px;height:3px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--on);box-shadow:none}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes pulse{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--accent2) 0%,transparent);opacity:.5}}
+@media (max-width:640px){.steps{grid-template-columns:1fr}.hero{padding-top:36px}}
+@media (prefers-reduced-motion:reduce){#marqT,.pill i,.hero h1 em{animation:none!important}}
+.search{margin-top:14px}
+/* ===== running border + polish ===== */
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes spin{to{--ang:360deg}}
+.chip{position:relative;font-weight:500;letter-spacing:-.005em}
+.chip[aria-pressed="true"]{background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--accent);font-weight:600;box-shadow:0 0 18px -6px var(--accent)}
+.chip[aria-pressed="true"]::before,.brand::after,.save[aria-pressed="true"]::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;background:conic-gradient(from var(--ang),transparent 0 55%,var(--accent2) 80%,var(--accent) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 3.2s linear infinite}
+.chip[aria-pressed="true"]::before{background:conic-gradient(from var(--ang),color-mix(in srgb,var(--accent) 25%,transparent) 0 40%,var(--accent2) 78%,var(--accent) 100%)}
+.brand::after{opacity:0;transition:opacity .35s}
+@media (hover:hover){.brand:hover::after{opacity:1}}
+.brand:focus-within::after{opacity:1}
+.brand::before{display:none}
+.save{position:relative}
+.save[aria-pressed="true"]{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s}
+.btn:hover::after{transform:translateX(120%)}
+.lk{position:relative;overflow:hidden}
+.hero h1{font-weight:700;letter-spacing:-.04em}
+h2{letter-spacing:-.025em}
+h3{font-weight:700;letter-spacing:-.015em}
+.tier{letter-spacing:.02em}
+.brand{padding:20px 22px;border-color:color-mix(in srgb,var(--line) 80%,transparent)}
+.dots i.on{background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.top{box-shadow:0 8px 30px -18px rgba(0,0,0,.25)}
+@media (prefers-reduced-motion:reduce){.chip[aria-pressed="true"]::before,.brand::after{animation:none!important}}
+.hard{color:var(--muted)}.tip p{margin:0;color:var(--muted)}.sortnote:empty{display:none}</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="top" aria-label="Điều hướng"><a class="logo" href="#"><i></i>Hàng bền thật</a><div class="tl"><a href="#steps">3 câu hỏi</a><a href="#main">Thương hiệu</a><button id="themeBtn" class="chip" type="button" aria-label="Đổi giao diện sáng hoặc tối">◐</button></div></nav>
+<div class="wrap">
+<header class="hero">
+<span class="pill"><i></i>Không quảng cáo, không hãng nào tài trợ</span>
+<h1>Trả tiền cho đồ làm ra <em>tốt</em>, không phải cho cái tên.</h1>
+<p class="lead">Mỗi nhóm hàng có 4-5 thương hiệu được biết đến vì cách họ làm ra sản phẩm: vật liệu, độ bền, sửa chữa và bảo hành. Ưu tiên hãng mua được ở Việt Nam.</p>
+<div class="cta"><a class="btn" href="#main">Xem các thương hiệu ↓</a><a class="btn ghost" href="#steps">Ba câu hỏi trước khi mua</a></div>
+</header>
+<div class="marq" aria-hidden="true"><div id="marqT"></div></div>
+<section id="steps" class="steps">
+<div><b>01</b><h4>Sửa được không?</h4><p>Có bảo hành, dịch vụ sửa chữa, phụ tùng thay thế.</p></div>
+<div><b>02</b><h4>Nói rõ chất liệu?</h4><p>Hãng tự tin thường ghi rõ loại thép, da, vải.</p></div>
+<div><b>03</b><h4>Đồ cũ còn tốt không?</h4><p>Xem người dùng lâu năm nói gì và giá bán lại.</p></div>
+</section>
+<p class="note"><b>Mua trên Shopee:</b> chọn Shopee Mall hoặc gian hàng chính hãng, xem đánh giá có ảnh thật, nghi ngờ giá thấp bất thường.</p>
+</div>
+<div class="wrap">
+<input id="q" class="search" type="search" enterkeyhint="search" autocomplete="off" placeholder="Tìm hãng hoặc nhóm hàng (giày, Seiko...)" aria-label="Tìm hãng hoặc nhóm hàng">
+<div class="row" role="group" aria-label="Lọc">
+<button class="chip" data-tier="all" aria-pressed="true">Mọi tầm giá</button>
+<button class="chip" data-tier="0" aria-pressed="false">Phổ thông</button>
+<button class="chip" data-tier="1" aria-pressed="false">Tầm trung</button>
+<button class="chip" data-tier="2" aria-pressed="false">Cao cấp</button>
+<button class="chip" id="favBtn" aria-pressed="false">Đã lưu (0)</button>
+</div>
+<div class="row" role="group" aria-label="Xếp theo">
+<span class="lbl">Xếp theo</span>
+<button class="chip" data-sort="-1" aria-pressed="true">Mặc định</button>
+<button class="chip" data-sort="0" aria-pressed="false">Dễ mua</button>
+<button class="chip" data-sort="1" aria-pressed="false">Giá rẻ → cao</button>
+<button class="chip" data-sort="2" aria-pressed="false">Trẻ trung → cổ điển</button>
+</div>
+<p class="sortnote" id="sortNote"></p>
+</div>
+<div class="bar"><div class="wrap"><nav class="row" id="cats" aria-label="Nhóm hàng"></nav></div></div>
+<div class="wrap">
+<main id="main"></main>
+<footer>
+<p><b>Điểm 1-5 là ước lượng của mình, không phải số liệu chính thức.</b> Dễ mua: độ dễ tìm ở Việt Nam. Giá: so sánh giữa các hãng cùng nhóm (nhiều chấm là đắt). Trẻ trung: phong cách thiên về người trẻ (5) hay cổ điển (1). Đồ tiếp xúc cơ thể hoặc thực phẩm nên xem chứng nhận trên sản phẩm (OEKO-TEX, LFGB, FDA).</p>
+<p>Nút Shopee và Google chỉ mở kết quả tìm kiếm, mình chưa kiểm tra từng gian hàng. Giá và bảo hành thay đổi, hãy kiểm tra trên trang chính hãng và giữ hóa đơn.</p>
+</footer>
+</div>
+<script>
+var TIERS=["Phổ thông","Tầm trung","Cao cấp"];
+// brand: [tên, nước, tầm giá, vì sao tin được, lưu ý, dễ mua, giá, trẻ trung]
+var DATA=[
+{id:"polo",g:"Công sở",name:"Áo polo",tip:"Người hay nóng nên ưu tiên vải thoáng, nhanh khô, dệt lưới hoặc cotton mỏng. Tránh polyester dày, bí. Kiểm tra cổ áo cứng cáp, đường may vai, khuy chắc.",b:[
+["Coolmate","Việt Nam",0,"Vải thoáng làm riêng cho khí hậu nóng ẩm, bán online có đổi trả.","Bền vừa phải, nên giặt đúng hướng dẫn.",5,1,5,1],
+["Uniqlo","Nhật",0,"Polo Dry-EX nhanh khô, mát, chất lượng đồng đều, giá phổ thông.","Không bền như hàng cao cấp nhưng rất đáng tiền.",5,1,4,1],
+["Lacoste","Pháp",2,"Cotton piqué dệt lỗ thoáng, cổ áo giữ dáng tốt.","Cotton thấm mồ hôi, lâu khô hơn Dry-EX. Giá cao, hàng nhái nhiều.",4,5,3],
+["Owen","Việt Nam",1,"Đồ nam công sở, dáng và size hợp người Việt.","Chất lượng khác nhau theo dòng, xem kỹ thành phần vải.",4,2,3]]},
+{id:"quanau",g:"Công sở",name:"Quần âu",tip:"Người hay nóng nên chọn quần tây mỏng nhẹ, thoáng, tránh vải polyester dày hoặc len. Cạp có lớp chống trượt, thử ngồi xem có bó không.",b:[
+["Coolmate","Việt Nam",0,"Quần tây nhẹ, co giãn, thoáng hơn, có đổi trả.","Bền vừa phải, không phải hàng may đo.",5,1,5,1],
+["Uniqlo","Nhật",0,"Quần âu co giãn nhẹ, đường may đều, nhiều size.","Vải pha polyester, trời nóng có thể hơi bí.",5,1,4],
+["Owen","Việt Nam",1,"Chuyên quần âu và sơ mi công sở nam, hợp người Việt.","Xem kỹ thành phần vải, tránh loại dày.",4,2,3],
+["Việt Tiến","Việt Nam",1,"Hãng may mặc lâu năm, chuyên vest và quần âu.","Vải thiên về dày, cổ điển.",4,2,2],
+["Dockers","Mỹ",1,"Chuyên quần âu và kaki, nhiều kiểu dáng và size rộng.","Kaki dày hơn, nóng hơn quần tây mỏng.",3,3,3]]},
+{id:"somi",g:"Công sở",name:"Sơ mi công sở",tip:"Người hay nóng nên chọn cotton thoáng hoặc vải nhẹ, dệt thưa. Sơ mi pha nhiều polyester dễ bí. Xem cổ áo có lót cứng, đường may đều.",b:[
+["Coolmate","Việt Nam",0,"Sơ mi nhẹ, thoáng, dễ giặt, có đổi trả.","Bền vừa phải, không phải hàng may đo.",5,1,5,1],
+["Muji","Nhật",0,"Sơ mi cotton ghi rõ chất liệu, thoáng hơn vải pha, dáng gọn.","Size thiên về dáng Nhật, nên thử.",5,2,3,1],
+["Owen","Việt Nam",1,"Chuyên sơ mi và quần âu công sở nam.","Xem thành phần vải, chọn loại cotton nhiều.",4,2,3],
+["Uniqlo","Nhật",0,"Sơ mi chống nhăn giá phổ thông, may đều.","Vải pha polyester, trời nóng hơi bí.",5,1,4],
+["Việt Tiến","Việt Nam",1,"Hãng lâu năm, chuyên sơ mi và vest.","Vải thiên về dày, cổ điển.",4,2,2]]},
+{id:"giay",g:"Công sở",name:"Giày công sở",tip:"Đế êm, da mềm không cấn chân, chọn loại thoáng. Giày đóng welt mới thay đế được, còn phần lớn hãng dễ mua ở đây dán hoặc đúc đế, nên chọn giày vừa chân ngay từ đầu.",b:[
+["Clarks","Anh",1,"Giày da đế êm, nhiều cỡ, thoải mái đi cả ngày.","Dòng giá rẻ thường dán đế.",5,2,3],
+["Ecco","Đan Mạch",2,"Tự sở hữu xưởng thuộc da, đế đúc liền, đi êm và nhẹ.","Giá cao, ít cửa hàng ở Việt Nam.",3,4,3],
+["Geox","Ý",1,"Đế thoáng khí, nhẹ, đi lâu ít bí chân.","Tuổi thọ ngắn hơn giày welt, không thay đế được.",4,2,3],
+["Hush Puppies","Mỹ",1,"Giày da đế êm, phù hợp đi lại nhiều.","Thiên về thoải mái hơn là trang trọng.",4,2,3]]},
+{id:"cap",g:"Công sở",name:"Cặp và balo laptop",tip:"Xem ngăn laptop có đệm và nâng đáy khỏi mặt đất, khóa kéo YKK, quai dày có đệm, vải chống nước nhẹ.",b:[
+["Targus","Mỹ",0,"Chuyên túi laptop, có đệm chống sốc, giá phổ thông.","Chọn đúng cỡ máy.",4,1,3],
+["Samsonite","Mỹ (trụ sở Luxembourg)",1,"Dòng cao làm tốt, dễ mua, bảo hành rõ ràng.","Dòng giá rẻ khác nhiều dòng cao.",5,2,3],
+["Thule","Thụy Điển",1,"Chuyên balo bảo vệ laptop, may kỹ, đệm tốt.","Nên mua ở nơi bán chính hãng.",3,3,4],
+["Tumi","Mỹ",2,"Vải ballistic nylon rất bền, khóa và quai chất lượng cao.","Giá rất cao, một phần là thương hiệu.",3,5,3]]},
+{id:"dongho",g:"Công sở",name:"Đồng hồ",tip:"Hãng tự sản xuất máy thường đáng tin hơn hãng chỉ lắp máy có sẵn. Xem thang chống nước, kính sapphire và mạng lưới bảo hành.",b:[
+["Seiko","Nhật",0,"Tự sản xuất máy, từ giá dễ đến cao cấp, dễ bảo hành.","Grand Seiko là hãng riêng, giá khác hẳn.",5,2,3],
+["Citizen","Nhật",0,"Eco-Drive chạy bằng ánh sáng, nhiều năm không thay pin.","Dòng thời trang giá rẻ dùng máy khác.",5,3,3],
+["Casio (G-Shock)","Nhật",0,"Chịu va đập rất tốt, pin lâu, giá rẻ.","Chọn đúng dòng bạn dùng.",5,1,5],
+["Grand Seiko","Nhật",2,"Chính xác cao, hoàn thiện cực kỹ, có Spring Drive.","Giá cao, phải mua chính hãng.",2,5,2]]},
+{id:"gym",g:"Gym",name:"Đồ tập gym",tip:"Người hay nóng nên chọn polyester hoặc nylon lưới, nhẹ, thoát mồ hôi nhanh, đường may phẳng. Cotton 100% lâu khô. Giặt nước lạnh, hạn chế nước xả vải.",b:[
+["Coolmate","Việt Nam",0,"Đồ tập nhẹ, thoáng, giá phổ thông, có đổi trả.","Không phải đồ thi đấu chuyên nghiệp.",5,1,5,1],
+["Decathlon (Domyos)","Pháp",0,"Giá phổ thông, vải thoát mồ hôi, thông số rõ, có đổi trả.","Bền vừa đủ dùng, nên thử size.",5,1,3,1],
+["Nike","Mỹ",1,"Dri-FIT thoát mồ hôi được kiểm nghiệm, bền qua nhiều lần giặt.","Nhiều mẫu chỉ là thời trang. Hàng nhái nhiều.",5,3,5,1],
+["Adidas","Đức",1,"Aeroready thoát ẩm, dòng tập luyện làm kỹ.","Dòng thời trang không phải đồ tập. Hàng nhái nhiều.",5,3,5,1]]},
+{id:"giaychay",g:"Gym",name:"Giày tập và chạy",tip:"Tập tạ chọn giày đế phẳng, chắc. Chạy bộ chọn đế êm và thay sau khoảng 500-800 km. Đừng dùng giày chạy đế dày cho tạ nặng.",b:[
+["ASICS","Nhật",1,"Nghiên cứu chuyển động chân lâu năm, đệm Gel bền.","Dòng Sportstyle không giống dòng chạy.",5,2,4],
+["New Balance","Mỹ và Anh",1,"Có dòng làm kỹ, đế bền, nhiều size.","Dòng giá rẻ khác dòng Made in USA.",5,3,4],
+["Nike","Mỹ",1,"Metcon đế phẳng cho tạ, Pegasus đệm êm cho chạy.","Nhiều mẫu thời trang tên gần giống. Hàng nhái nhiều.",5,3,5],
+["Reebok","Mỹ",1,"Dòng Nano là giày tập chéo quen thuộc, đế phẳng chắc.","Dòng lifestyle không phải giày tập.",4,2,5]]},
+{id:"binh",g:"Gym",name:"Bình giữ nhiệt",tip:"Tìm chữ 'thép 304 hoặc 18-8' và 'thành đôi hút chân không'. Nắp, gioăng tháo rửa được và có bán phụ tùng là dấu hiệu làm để dùng lâu.",b:[
+["Zojirushi","Nhật",2,"Chân không ổn định, mặt trong nhẵn ít bám mùi, có bán linh kiện thay.","Hàng nội địa Nhật có thể khác chế độ bảo hành.",4,4,3],
+["Tiger","Nhật",2,"Đối thủ trực tiếp của Zojirushi, mạnh về chân không và độ kín nắp.","Sản xuất ở nhiều nước, xem tem xuất xứ.",4,4,2],
+["Thermos","Đức (gốc)",1,"Hãng khai sinh bình giữ nhiệt hiện đại.","Nhánh Nhật và Mỹ khác nhau về chất lượng và giá.",4,2,3],
+["Hydro Flask","Mỹ",1,"Thép 18/8 thành đôi, sơn ngoài bền, bảo hành trọn đời.","Hàng nhái nhiều, không phải mẫu nào cũng rửa máy được.",3,3,4]]},
+{id:"laptop",g:"Công nghệ",name:"Laptop văn phòng",tip:"Chọn dòng doanh nhân thay vì phổ thông: khung chắc, bàn phím tốt, bảo hành tại chỗ. Nên có RAM 16GB, SSD và kiểm tra bảo hành tại Việt Nam.",b:[
+["Lenovo (ThinkPad)","Trung Quốc",1,"Bàn phím tốt, khung chắc, bảo hành và linh kiện sẵn.","IdeaPad phổ thông khác hẳn ThinkPad.",5,3,3],
+["Dell (Latitude)","Mỹ",1,"Dòng cho doanh nghiệp, khung chắc, bảo hành tại chỗ.","Inspiron phổ thông kém hơn nhiều.",5,3,3],
+["HP (EliteBook)","Mỹ",1,"Khung kim loại, nhiều tính năng bảo mật.","Dòng phổ thông dùng nhựa, kém bền hơn.",5,3,3],
+["Apple (MacBook)","Mỹ",2,"Pin lâu, chip mạnh, giữ giá tốt khi bán lại.","RAM và ổ cứng không nâng cấp được, phần mềm chỉ chạy Windows có thể không dùng được.",5,5,4]]},
+{id:"manhinh",g:"Công nghệ",name:"Màn hình",tip:"Cho chữ và bảng tính nên chọn QHD hoặc 4K, tấm nền IPS, chân đế chỉnh được độ cao, có USB-C để sạc laptop, chống chói và ít nhấp nháy.",b:[
+["Dell (UltraSharp)","Mỹ",1,"Ổn định, màu chuẩn, chân đế linh hoạt, bảo hành tốt.","Giá cao hơn hãng phổ thông cùng cỡ.",5,3,3],
+["BenQ","Đài Loan",1,"Tập trung chăm sóc mắt, chống chói, ít nhấp nháy.","Chọn đúng dòng văn phòng, đừng nhầm dòng gaming.",4,3,3],
+["ASUS","Đài Loan",1,"Đa dạng, màu chính xác ở dòng ProArt.","Dòng gaming và văn phòng khác nhau.",5,2,4],
+["Philips","Hà Lan",0,"Giá dễ, đủ dùng cho văn phòng, có bảo hành chính hãng.","Màu và chân đế kém hãng cao cấp.",4,2,3]]},
+{id:"tainghe",g:"Công nghệ",name:"Tai nghe",tip:"Xem chống ồn ANC, độ êm khi đeo lâu, pin, bluetooth ổn định và bảo hành. Nghe vừa phải để bảo vệ tai, thử micro nếu họp online.",b:[
+["Sony","Nhật",1,"Chống ồn nổi tiếng, chất lượng ổn định, bảo hành chính hãng.","Hàng nhái và xách tay nhiều, kiểm tra số seri.",5,3,4],
+["Sennheiser","Đức",2,"Hãng âm thanh lâu đời, âm chất tốt.","Bảo hành khác nhau giữa nhà phân phối.",4,4,3],
+["Bose","Mỹ",2,"Chống ồn rất tốt, đệm êm, đeo lâu ít mỏi.","Giá cao, âm thiên về êm hơn chi tiết.",4,4,3],
+["Anker (Soundcore)","Trung Quốc",0,"Giá phổ thông, pin lâu, chống ồn khá so với giá.","Chất âm và chất liệu kém hãng cao cấp.",5,1,5]]},
+{id:"chuot",g:"Công nghệ",name:"Chuột và bàn phím",tip:"Chọn loại vừa tay, cảm giác bấm tốt, có pin sạc và kết nối nhiều thiết bị. Loại công thái học giúp giảm mỏi tay.",b:[
+["Logitech","Thụy Sĩ",1,"Bền, kết nối nhiều thiết bị, phần mềm tốt.","Dòng giá rẻ kém xa dòng MX.",5,2,3],
+["Keychron","Hồng Kông",1,"Bàn phím cơ chất lượng tốt, giá hợp lý, dùng được cả Mac và Windows.","Nặng, tiếng gõ to hơn bàn phím thường.",4,3,4],
+["Microsoft","Mỹ",1,"Bàn phím và chuột công thái học cho người làm việc lâu.","Dáng lạ, cần thời gian làm quen.",4,3,3],
+["Razer","Mỹ và Singapore",2,"Độ trễ thấp, cảm biến tốt, có dòng cho làm việc.","Nhiều dòng thiên về gaming và đèn RGB.",4,4,5]]},
+{id:"sac",g:"Công nghệ",name:"Sạc, pin dự phòng, cáp",tip:"Chọn theo công suất (W) và chuẩn USB-PD khớp máy, có bảo vệ quá dòng và quá nhiệt. Tránh sạc, cáp, pin không tên vì có thể cháy nổ.",b:[
+["Anker","Trung Quốc",1,"Sạc và pin dự phòng phổ biến, sạc nhanh, bảo hành rõ.","Từng thu hồi một số mẫu pin, kiểm tra mã trên trang hãng.",5,2,3],
+["Baseus","Trung Quốc",0,"Sạc, cáp, hub giá hợp lý, thiết kế gọn.","Chất lượng khác nhau theo dòng.",5,2,4],
+["Ugreen","Trung Quốc",0,"Cáp, hub, sạc giá phổ thông, đủ chuẩn dùng văn phòng.","Hàng nhái nhiều, mua gian hàng chính hãng.",5,1,3],
+["Belkin","Mỹ",2,"Chất lượng cao, có bảo hành và chứng nhận cho thiết bị Apple.","Giá cao hơn hãng Trung Quốc cùng công suất.",3,4,3]]},
+{id:"watch",g:"Công nghệ",name:"Đồng hồ thông minh",tip:"Chạy bộ và đạp xe cần GPS chính xác, dùng hằng ngày cần pin nhiều ngày, iPhone hay Android quyết định hệ sinh thái. Nhịp tim chỉ để tham khảo, không thay thiết bị y tế.",b:[
+["Garmin","Mỹ",2,"GPS chính xác, pin nhiều ngày, dữ liệu tập luyện sâu.","Giá cao, chọn dòng theo nhu cầu.",4,4,4],
+["Apple Watch","Mỹ",2,"Hệ sinh thái tốt, cảm biến sức khỏe, cập nhật phần mềm lâu năm.","Chỉ dùng với iPhone, pin khoảng một ngày.",4,5,4],
+["Amazfit","Trung Quốc",0,"Giá dễ, pin dài, đủ tính năng theo dõi tập luyện.","Cảm biến và phần mềm không bằng Garmin.",4,2,4],
+["Polar","Phần Lan",2,"Chuyên đo nhịp tim và dữ liệu tập luyện.","Ít bán chính thức ở Việt Nam.",2,4,3]]}
+];
+var state={cat:DATA[0].id,q:"",tier:"all",fav:false,sort:"-1"};
+var SORTS=["Dễ mua (dễ xuống khó)","Mức giá (rẻ lên cao)","Trẻ trung (trẻ xuống cổ điển)"];
+DATA.forEach(function(c){c.brands=c.b.map(function(a,i){return{n:a[0],c:a[1],t:a[2],why:a[3],warn:a[4],s:[a[5],a[6],a[7]],cool:a[8],i:i};});});
+var PQ={polo:"áo polo",quanau:"quần âu",somi:"áo sơ mi",giay:"giày công sở",cap:"balo laptop",dongho:"đồng hồ",gym:"đồ tập gym",giaychay:"giày chạy bộ",binh:"bình giữ nhiệt",laptop:"laptop",manhinh:"màn hình",tainghe:"tai nghe",chuot:"chuột bàn phím",sac:"sạc pin dự phòng",watch:"đồng hồ thông minh"};
+DATA.forEach(function(c){c.pq=PQ[c.id];});
+function $(id){return document.getElementById(id);}
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d");}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+var favs={};try{favs=JSON.parse(localStorage.getItem("hangxin-fav")||"{}")||{};}catch(e){favs={};}
+function saveFavs(){try{localStorage.setItem("hangxin-fav",JSON.stringify(favs));}catch(e){}}
+function fk(c,b){return c.id+":"+b.n;}
+function sortBrands(l){
+ var k=parseInt(state.sort,10);
+ return l.slice().sort(function(a,b){
+  if(k>=0){var d=(a.s[k]-b.s[k])*(k===1?1:-1);if(d)return d;}
+  return a.i-b.i;});
+}
+function dots(n){var h='<span class="dots" role="img" aria-label="'+n+' trên 5">';for(var i=1;i<=5;i++)h+='<i class="'+(i<=n?'on':'')+'"></i>';return h+'</span>';}
+function scores(b){
+ var k=parseInt(state.sort,10),L=["Dễ mua","Giá","Trẻ trung"];
+ return'<div class="sc">'+L.map(function(l,i){return'<div class="'+(k===i?'on-sort':'')+'"><span>'+l+'</span>'+dots(b.s[i])+'</div>';}).join("")+'</div>';
+}
+function qry(c,b){return c.pq+" "+b.n.replace(/[()]/g,"")+" chính hãng";}
+function shop(c,b){return"https://shopee.vn/search?keyword="+encodeURIComponent(qry(c,b));}
+function google(c,b){return"https://www.google.com/search?q="+encodeURIComponent(qry(c,b));}
+function card(c,b,showCat,i){
+ var k=fk(c,b),on=!!favs[k],easy=b.s[0]>=4;
+ return'<article class="brand" style="--i:'+Math.min(i||0,8)+'"><div><h3>'+esc(b.n)+'</h3><span class="tier t'+b.t+'">'+TIERS[b.t]+'</span>'+(b.cool?' <span class="tier cool">Vải mát</span>':'')+(b.s[0]<4?' <span class="tier hard">Ít cửa hàng</span>':'')
+ +'<div class="from">'+esc(b.c)+(showCat?' - '+esc(c.name):'')+'</div>'
+ +'<button class="save" data-fav="'+esc(k)+'" aria-pressed="'+on+'">'+(on?'Đã lưu':'Lưu lại')+'</button></div>'
+ +'<div class="body"><p><span class="k">Vì sao tin được: </span>'+esc(b.why)+'</p>'
+ +'<p class="warn"><span class="k">Lưu ý: </span>'+esc(b.warn)+'</p>'
+ +'<div class="links"><a class="lk" href="'+shop(c,b)+'" target="_blank" rel="noopener noreferrer">Shopee <b>↗</b></a><a class="lk" href="'+google(c,b)+'" target="_blank" rel="noopener noreferrer">Google <b>↗</b></a></div>'
+ +scores(b)+'</div></article>';
+}
+function render(){
+ var q=norm(state.q.trim()),flat=q||state.fav||state.tier!=="all",h="",n=0;
+ if(!flat){
+  var c=DATA.filter(function(x){return x.id===state.cat;})[0];
+  h+='<h2>'+esc(c.name)+'</h2><div class="tip"><p>'+esc(c.tip)+'</p></div>';
+  sortBrands(c.brands).forEach(function(b){h+=card(c,b,false,n);n++;});
+  var ci=DATA.indexOf(c);
+  h+='<div class="pager"><button class="chip" data-step="-1"'+(ci===0?' disabled':'')+'>← '+(ci>0?esc(DATA[ci-1].name):'')+'</button><button class="chip" data-step="1"'+(ci===DATA.length-1?' disabled':'')+'>'+(ci<DATA.length-1?esc(DATA[ci+1].name):'')+' →</button></div>';
+ }else{
+  h+='<h2>'+(state.fav?"Hãng bạn đã lưu":"Kết quả")+'</h2>';
+  DATA.forEach(function(c){
+   var cm=q&&norm(c.name).indexOf(q)>-1;
+   sortBrands(c.brands).forEach(function(b){
+    if(state.tier!=="all"&&String(b.t)!==state.tier)return;
+    if(state.fav&&!favs[fk(c,b)])return;
+    if(q&&!cm&&norm([b.n,b.c,b.why,c.name].join(" ")).indexOf(q)===-1)return;
+    h+=card(c,b,true,n);n++;
+   });
+  });
+  if(!n)h+='<p class="empty">'+(state.fav?'Bạn chưa lưu hãng nào. Bấm "Lưu lại" ở hãng bạn quan tâm.':'Không có hãng nào khớp. Thử từ khóa ngắn hơn hoặc chọn mọi tầm giá.')+'</p>';
+ }
+ $("main").innerHTML=h;
+ var k=parseInt(state.sort,10);
+ $("sortNote").textContent=k<0?"":"Đang xếp: "+SORTS[k]+". Áp dụng trong từng nhóm hàng.";
+ var f=0;DATA.forEach(function(c){c.brands.forEach(function(b){if(favs[fk(c,b)])f++;});});
+ $("favBtn").textContent="Đã lưu ("+f+")";
+}
+function renderCats(){
+ var nav=$("cats"),keep=nav.scrollLeft,last="";
+ nav.innerHTML=DATA.map(function(c){
+  var p=!state.q&&!state.fav&&state.tier==="all"&&state.cat===c.id,g="";
+  if(c.g!==last){g='<span class="grp">'+esc(c.g)+'</span>';last=c.g;}
+  return g+'<button class="chip" data-cat="'+c.id+'" aria-pressed="'+p+'">'+esc(c.name)+'</button>';
+ }).join("");
+ nav.scrollLeft=keep;
+ var on=nav.querySelector('[aria-pressed="true"]');
+ if(on&&(on.offsetLeft<nav.scrollLeft||on.offsetLeft+on.offsetWidth>nav.scrollLeft+nav.clientWidth))nav.scrollLeft=Math.max(0,on.offsetLeft-16);
+}
+function refresh(){renderCats();render();}
+function group(attr,key){
+ document.querySelectorAll("["+attr+"]").forEach(function(btn){
+  btn.addEventListener("click",function(){
+   state[key]=btn.getAttribute(attr);
+   document.querySelectorAll("["+attr+"]").forEach(function(b){b.setAttribute("aria-pressed",String(b===btn));});
+   refresh();
+  });
+ });
+}
+$("q").addEventListener("input",function(e){state.q=e.target.value;refresh();});
+group("data-tier","tier");group("data-sort","sort");
+$("favBtn").addEventListener("click",function(){state.fav=!state.fav;this.setAttribute("aria-pressed",String(state.fav));refresh();});
+$("cats").addEventListener("click",function(e){
+ var b=e.target.closest("[data-cat]");if(!b)return;
+ state.cat=b.getAttribute("data-cat");state.q="";$("q").value="";state.fav=false;state.tier="all";
+ $("favBtn").setAttribute("aria-pressed","false");
+ document.querySelectorAll("[data-tier]").forEach(function(x){x.setAttribute("aria-pressed",String(x.getAttribute("data-tier")==="all"));});
+ refresh();$("main").scrollIntoView({behavior:"smooth",block:"start"});
+});
+$("main").addEventListener("click",function(e){
+ var st=e.target.closest("[data-step]");if(st){go(parseInt(st.getAttribute("data-step"),10));return;}
+ var b=e.target.closest("[data-fav]");if(!b)return;
+ var k=b.getAttribute("data-fav");
+ if(favs[k])delete favs[k];else favs[k]=true;
+ saveFavs();render();
+ var nb=document.querySelector('[data-fav="'+CSS.escape(k)+'"]');if(nb)nb.focus();
+});
+$("themeBtn").addEventListener("click",function(){
+ var r=document.documentElement,t=r.getAttribute("data-theme");
+ var dark=t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches);
+ r.setAttribute("data-theme",dark?"light":"dark");
+});
+
+function go(d){
+ if(state.q||state.fav||state.tier!=="all")return;
+ var j=DATA.map(function(x){return x.id;}).indexOf(state.cat)+d;
+ if(j<0||j>=DATA.length)return;
+ state.cat=DATA[j].id;refresh();$("main").scrollIntoView({behavior:"smooth",block:"start"});
+}
+document.querySelectorAll(".row").forEach(function(r){
+ r.addEventListener("wheel",function(e){
+  if(r.scrollWidth>r.clientWidth&&Math.abs(e.deltaY)>Math.abs(e.deltaX)){r.scrollLeft+=e.deltaY;e.preventDefault();}
+ },{passive:false});
+});
+window.addEventListener('scroll',function(){var d=document.documentElement,m=d.scrollHeight-innerHeight;$('prog').style.transform='scaleX('+(m>0?Math.min(1,scrollY/m):0)+')';},{passive:true});
+(function(){var seen={},a=[];DATA.forEach(function(c){c.brands.forEach(function(b){var n=b.n.replace(/\s*\(.*\)/,'');if(!seen[n]){seen[n]=1;a.push(n);}});});var h=a.map(function(n){return'<span>'+esc(n)+'</span>';}).join('');$('marqT').innerHTML=h+h;})();
+refresh();
+</script>
+</body>
+</html>
