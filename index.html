@@ -365,48 +365,45 @@ function shop(c,b){return"https://shopee.vn/search?keyword="+encodeURIComponent(
 function google(c,b){return"https://www.google.com/search?q="+encodeURIComponent(qry(c,b));}
 function dots(n){return'<i class="bar" role="img" aria-label="'+n+' trên 5"><u style="width:'+n*20+'%"></u></i>';}
 function mini(b){var r=[["An toàn",b.sf],["Bền",b.dur],["Mát",b.mat],["Trẻ trung",b.yo],["Dễ mua",b.ea],["Giá",b.pr]];return'<div class="mini">'+r.filter(function(x){return x[1]>0;}).map(function(x){return'<span'+(x[0]==="Giá"?' class="pr"':'')+'><em>'+x[0]+'</em>'+dots(x[1])+'</span>';}).join("")+'</div>';}
-var V={q:"",tier:"all",fav:false,g:GROUPS[0]};
+var V={view:"groups",g:null,c:null,q:"",tier:"all"};
+function cat(){return DATA.filter(function(x){return x.id===V.c;})[0];}
 function favCount(){var f=0;DATA.forEach(function(c){c.brands.forEach(function(b){if(favs[fk(c,b)])f++;});});return f;}
-function updFav(){var p=$("favBtn");p.textContent="♥ "+favCount();p.setAttribute("aria-pressed",V.fav);}
+function updFav(){var p=$("favBtn");p.textContent="♥ "+favCount();p.setAttribute("aria-pressed",V.view==="fav");}
 function tags(b){return'<div class="tags"><span class="tier t'+b.t+'">'+TIERS[b.t]+'</span>'+(b.sf>=5?'<span class="tier cool">Dịu, ít kích ứng</span>':'')+(b.sf>0&&b.sf<=2?'<span class="tier warn">Dễ kích ứng</span>':'')+(b.mat>=4?'<span class="tier cool">Mát</span>':'')+(b.dur>=5?'<span class="tier cool">Rất bền</span>':'')+(b.ea<4?'<span class="tier hard">Ít cửa hàng</span>':'')+'</div>';}
-function item(c,b,n){var k=fk(c,b),on=!!favs[k];
- return'<article class="item"><div class="ih"><em class="ix">'+String(n).padStart(2,"0")+'</em><div class="nm"><h4>'+esc(b.n)+'</h4><span class="from">'+esc(b.c)+'</span></div><button class="save" type="button" data-fav="'+esc(k)+'" aria-pressed="'+on+'" aria-label="'+(on?'Bỏ lưu ':'Lưu ')+esc(b.n)+'">'+(on?'♥':'♡')+'</button></div>'+tags(b)
+function item(c,b,n,sc){var k=fk(c,b),on=!!favs[k];
+ return'<article class="item"><div class="ih"><em class="ix">'+String(n).padStart(2,"0")+'</em><div class="nm"><h4>'+esc(b.n)+'</h4><span class="from">'+esc(b.c)+(sc?' · '+esc(c.name):'')+'</span></div><button class="save" type="button" data-fav="'+esc(k)+'" aria-pressed="'+on+'" aria-label="'+(on?'Bỏ lưu ':'Lưu ')+esc(b.n)+'">'+(on?'♥':'♡')+'</button></div>'+tags(b)
  +'<p class="w why"><b></b><span>'+esc(b.why)+'</span></p><p class="w warn"><b></b><span>'+esc(b.warn)+'</span></p>'
  +'<div class="ft">'+mini(b)+'<div class="links"><a class="lk" href="'+shop(c,b)+'" target="_blank" rel="noopener noreferrer">Shopee ↗</a><a class="lk" href="'+google(c,b)+'" target="_blank" rel="noopener noreferrer">Google ↗</a></div></div></article>';}
+function tile(attr,name,sub){return'<button class="tile" '+attr+'><b>'+esc(name)+'</b><small>'+esc(sub)+'</small></button>';}
+function results(q){var h="";DATA.forEach(function(c){var hit=c.brands.filter(function(b){return norm(b.n).indexOf(q)>-1;}),nm=norm(c.name).indexOf(q)>-1;if(!nm&&!hit.length)return;h+=tile('data-c="'+c.id+'"',c.name,nm?c.brands.length+" hãng":"có "+hit.slice(0,2).map(function(b){return b.n;}).join(", "));});return h?'<div class="tiles">'+h+'</div>':'<p class="empty">Không thấy hãng hay món nào khớp. Thử từ khóa ngắn hơn.</p>';}
 function shell(){
- $("back").hidden=true;
- $("main").innerHTML='<p class="lead">Chọn thương hiệu theo thứ tự: an toàn, bền, mát, trẻ trung, dễ mua, giá. Dành cho nam.</p><input id="q" class="search" type="search" enterkeyhint="search" autocomplete="off" placeholder="Tìm hãng hoặc món đồ" aria-label="Tìm hãng hoặc món đồ" value="'+esc(V.q)+'">'
- +'<div class="gs" id="gs"></div><nav class="chips" id="cj" aria-label="Món trong nhóm"></nav>'
- +'<div class="tf" id="tf">'+[["all","Tất cả"],["0","Phổ thông"],["1","Tầm trung"],["2","Cao cấp"]].map(function(t){return'<button type="button" data-t="'+t[0]+'">'+t[1]+'</button>';}).join("")+'</div><div id="list"></div>'
- +'<footer><p><b>Điểm 1-5 là ước lượng của mình, không phải số liệu chính thức.</b> Đồ có mùi hoặc dùng trên da có thêm điểm An toàn, xếp trước mọi tiêu chí; ai có tiền sử dị ứng nên thử vùng da nhỏ và hỏi bác sĩ da liễu. Giá: thanh càng dài càng đắt.</p><p>Trên Shopee chọn Shopee Mall hoặc gian hàng chính hãng, xem ảnh đánh giá thật, giữ hóa đơn để bảo hành. Nút Shopee và Google chỉ mở kết quả tìm kiếm. Giá và bảo hành thay đổi, hãy kiểm tra trang chính hãng.</p></footer>';
+ $("main").innerHTML='<p class="lead" id="lead">Chọn thương hiệu theo thứ tự: an toàn, bền, mát, trẻ trung, dễ mua, giá. Dành cho nam.</p><input id="q" class="search" type="search" enterkeyhint="search" autocomplete="off" placeholder="Tìm hãng hoặc món đồ" aria-label="Tìm hãng hoặc món đồ"><div id="body"></div>'
+ +'<footer id="ft"><p><b>Điểm 1-5 là ước lượng của mình, không phải số liệu chính thức.</b> Đồ có mùi hoặc dùng trên da có thêm điểm An toàn, xếp trước mọi tiêu chí; ai có tiền sử dị ứng nên thử vùng da nhỏ và hỏi bác sĩ da liễu. Giá: thanh càng dài càng đắt.</p><p>Trên Shopee chọn Shopee Mall hoặc gian hàng chính hãng, xem ảnh đánh giá thật, giữ hóa đơn để bảo hành. Nút Shopee và Google chỉ mở kết quả tìm kiếm. Giá và bảo hành thay đổi, hãy kiểm tra trang chính hãng.</p></footer>';
  $("q").addEventListener("input",function(e){V.q=e.target.value;render();});
 }
 function render(){
- var q=norm(V.q.trim()),h="",last="",all=!!q||V.fav,cj="";
- DATA.forEach(function(c){
-  if(!all&&c.g!==V.g)return;
-  var cm=q&&norm(c.name).indexOf(q)>-1;
-  var bs=sortBrands(c.brands).filter(function(b){
-   if(V.fav&&!favs[fk(c,b)])return false;
-   if(V.tier!=="all"&&String(b.t)!==V.tier)return false;
-   if(q&&!cm&&norm(b.n).indexOf(q)<0)return false;
-   return true;});
-  if(!bs.length)return;
-  cj+='<a href="#c-'+c.id+'">'+esc(c.name)+'</a>';
-  if(all&&c.g!==last){last=c.g;h+='<h2 class="grp">'+esc(c.g)+'</h2>';}
-  h+='<section class="cat" id="c-'+c.id+'"><h3 class="ch">'+esc(c.name)+'</h3><p class="tipt">'+esc(c.tip)+'</p>'+bs.map(function(b,i){return item(c,b,i+1);}).join("")+'</section>';
- });
- $("list").innerHTML=h||'<p class="empty">'+(V.fav?"Chưa lưu hãng nào. Bấm ♡ ở hãng bạn quan tâm.":"Không thấy hãng hay món nào khớp. Thử từ khóa ngắn hơn.")+'</p>';
- [].forEach.call(document.querySelectorAll("#tf button"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-t")===V.tier);});
- $("gs").style.display=all?"none":"";
- $("gs").innerHTML=GROUPS.map(function(g){return'<button class="sg" data-g="'+esc(g)+'" aria-pressed="'+(g===V.g)+'">'+esc(g)+'</button>';}).join("");
- $("cj").innerHTML=all?"":cj;
- updFav();
+ var v=V.view,q=norm(V.q.trim()),h="",home=v==="groups",c=v==="brands"?cat():null;
+ $("lead").hidden=$("q").hidden=$("ft").hidden=!home;
+ $("back").hidden=home;
+ $("ttl").textContent=home?"Hàng bền thật":v==="cats"?V.g:v==="fav"?"Đã lưu":c.name;
+ if(home&&q)h=results(q);
+ else if(home){GROUPS.forEach(function(g){var n=DATA.filter(function(x){return x.g===g&&x.brands.length;}).length;if(n)h+=tile('data-g="'+esc(g)+'"',g,n+" món");});h='<div class="tiles">'+h+'</div>';}
+ else if(v==="cats"){DATA.forEach(function(x){if(x.g===V.g&&x.brands.length)h+=tile('data-c="'+x.id+'"',x.name,x.brands.length+" hãng");});h='<p class="eyebrow">Nhóm</p><h2>'+esc(V.g)+'</h2><div class="tiles">'+h+'</div>';}
+ else if(v==="brands"){
+  var bs=sortBrands(c.brands).filter(function(b){return V.tier==="all"||String(b.t)===V.tier;});
+  h='<p class="eyebrow">'+esc(c.g)+'</p><h2>'+esc(c.name)+'</h2><p class="tipt">'+esc(c.tip)+'</p><div class="tf">'+[["all","Tất cả"],["0","Phổ thông"],["1","Tầm trung"],["2","Cao cấp"]].map(function(t){return'<button type="button" data-t="'+t[0]+'" aria-pressed="'+(V.tier===t[0])+'">'+t[1]+'</button>';}).join("")+'</div>'+(bs.length?bs.map(function(b,i){return item(c,b,i+1);}).join(""):'<p class="empty">Chưa có hãng ở tầm giá này.</p>');
+ }else{var n=0;DATA.forEach(function(x){x.brands.forEach(function(b){if(favs[fk(x,b)])h+=item(x,b,++n,true);});});h='<p class="eyebrow">Yêu thích</p><h2>Đã lưu</h2>'+(h||'<p class="empty">Chưa lưu hãng nào. Bấm ♡ ở hãng bạn quan tâm.</p>');}
+ $("body").innerHTML=h;updFav();
 }
-$("favBtn").addEventListener("click",function(){V.fav=!V.fav;render();});
+function go(view){V.view=view;try{history.pushState({v:view},"");}catch(e){}render();window.scrollTo(0,0);}
+function up(){if(V.view==="brands"){V.view="cats";V.g=cat().g;}else if(V.view==="cats"||V.view==="fav"){V.view="groups";}else return;render();window.scrollTo(0,0);}
+$("back").addEventListener("click",up);
+addEventListener("popstate",up);
+$("favBtn").addEventListener("click",function(){if(V.view==="fav")up();else go("fav");});
 $("main").addEventListener("click",function(e){
  var t;
- if(t=e.target.closest("[data-g]")){V.g=t.getAttribute("data-g");render();window.scrollTo(0,0);return;}
+ if(t=e.target.closest("[data-g]")){V.g=t.getAttribute("data-g");go("cats");return;}
+ if(t=e.target.closest("[data-c]")){V.c=t.getAttribute("data-c");V.tier="all";V.q="";$("q").value="";go("brands");return;}
  if(t=e.target.closest("[data-t]")){V.tier=t.getAttribute("data-t");render();return;}
  if(t=e.target.closest("[data-fav]")){var k=t.getAttribute("data-fav");if(favs[k])delete favs[k];else favs[k]=true;saveFavs();var y=window.scrollY;render();window.scrollTo(0,y);var nb=document.querySelector('[data-fav="'+CSS.escape(k)+'"]');if(nb)nb.focus({preventScroll:true});}
 });
